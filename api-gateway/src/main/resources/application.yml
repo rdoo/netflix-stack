@@ -14,9 +14,10 @@ zuul:
   prefix: /api/v1
   routes:
     auth-service:
+      sensitiveHeaders:
       path: /auth/**
-      service-id: auth-service
-      
+      serviceId: auth-server
+
     note-service:
       path: /notes/**
-      service-id: note-service
+      serviceId: note-service
