@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: user-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/netflix-stack
+
+server:
+  port: 8847
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8884/eureka/
