@@ -1,6 +1,9 @@
 spring:
   application:
     name: auth-server
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/netflix-stack
 
 server:
   port: 8894
@@ -20,9 +23,9 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8884/eureka/
 
-logging:
-  level:
-    org.zalando.logbook: TRACE
+# logging:
+#  level:
+#    org.zalando.logbook: TRACE
 
 logbook:
   format:
