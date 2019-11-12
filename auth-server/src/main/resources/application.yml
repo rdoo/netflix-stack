@@ -5,7 +5,33 @@ spring:
 server:
   port: 8894
 
+security:
+  oauth2:
+    client:
+      clientId: apiGatewayClient
+      clientSecret: apiGatewaySecret
+      authorizedGrantTypes:
+        - password
+        - refresh_token
+      scope: all
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8884/eureka/
+
+logging:
+  level:
+    org.zalando.logbook: TRACE
+
+logbook:
+  format:
+    style: http
+  obfuscate:
+    headers:
+      - qweertrtsdfs
+    parameters:
+      - sdfsfdhfdh
+      - gfdgsdgfdg
+    paths:
+      - sgdfhdhgfhfg

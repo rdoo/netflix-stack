@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().denyAll().and().formLogin().disable();
+        http.formLogin().disable().authorizeRequests().anyRequest().denyAll();
+        // http.authorizeRequests().anyRequest().permitAll();
     }
 }
