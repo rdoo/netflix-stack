@@ -8,6 +8,12 @@ spring:
 server:
   port: 8847
 
+security:
+  oauth2:
+    resource:
+      jwt:
+        keyValue: 123
+
 eureka:
   client:
     serviceUrl:
