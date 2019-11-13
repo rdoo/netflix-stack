@@ -11,8 +11,8 @@ security:
   oauth2:
     client:
       # accessTokenUri: http://auth-server/auth/oauth/token
-      clientId: client
-      clientSecret: secret
+      clientId: apiGatewayClient
+      clientSecret: apiGatewaySecret
 
 eureka:
   client:
@@ -26,6 +26,10 @@ zuul:
       sensitiveHeaders:
       path: /auth/**
       serviceId: auth-server
+
+    user-service:
+      path: /users/**
+      serviceId: user-service
 
     note-service:
       path: /notes/**

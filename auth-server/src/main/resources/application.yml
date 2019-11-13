@@ -16,16 +16,17 @@ security:
       authorizedGrantTypes:
         - password
         - refresh_token
-      scope: all
+      scope:
+        - all
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8884/eureka/
 
-# logging:
-#  level:
-#    org.zalando.logbook: TRACE
+logging:
+ level:
+   org.zalando.logbook: TRACE
 
 logbook:
   format:
