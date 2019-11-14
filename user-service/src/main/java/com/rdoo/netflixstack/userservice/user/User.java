@@ -1,4 +1,4 @@
-package com.rdoo.netflixstack.userservice.model;
+package com.rdoo.netflixstack.userservice.user;
 
 import javax.validation.constraints.NotBlank;
 
@@ -16,7 +16,7 @@ public class User {
 
     @NotBlank
     @Indexed(unique = true)
-    private String login;
+    private String username;
 
     @NotBlank
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -28,8 +28,8 @@ public class User {
     @NotBlank
     private String lastName;
 
-    public User(String login, String password) {
-        this.login = login;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -41,12 +41,12 @@ public class User {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String login) {
+        this.username = login;
     }
 
     public String getPassword() {

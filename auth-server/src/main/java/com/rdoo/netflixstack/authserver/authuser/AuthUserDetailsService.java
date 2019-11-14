@@ -12,8 +12,8 @@ public class AuthUserDetailsService implements UserDetailsService {
     private AuthUserRepository authUserRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String login) {
-        return authUserRepository.findByLogin(login)
-                .orElseThrow(() -> new UsernameNotFoundException("User with login " + login + " not found"));
+    public UserDetails loadUserByUsername(String username) {
+        return authUserRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " not found"));
     }
 }

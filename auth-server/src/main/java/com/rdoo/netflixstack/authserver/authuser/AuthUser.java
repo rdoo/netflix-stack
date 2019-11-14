@@ -12,15 +12,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class AuthUser implements UserDetails {
     private static final long serialVersionUID = 1L;
 
-    private String login;
+    private String username;
     private String password;
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String login) {
+        this.username = login;
     }
 
     public String getPassword() {
@@ -29,10 +29,6 @@ public class AuthUser implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getUsername() {
-        return login;
     }
 
     public boolean isEnabled() {
@@ -52,6 +48,6 @@ public class AuthUser implements UserDetails {
     }
 
     public List<GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("USER"));
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 }

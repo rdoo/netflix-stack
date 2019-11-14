@@ -1,17 +1,15 @@
-package com.rdoo.netflixstack.userservice.controller;
+package com.rdoo.netflixstack.userservice.user;
 
 import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import com.rdoo.netflixstack.userservice.model.User;
-import com.rdoo.netflixstack.userservice.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +30,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder; // TODO move to service
 
     @GetMapping
+    @PreAuthorize("hasRole('USER')")
     public List<User> getAll() {
         return this.userRepository.findAll();
     }
@@ -57,7 +56,7 @@ public class UserController {
         try {
             this.userRepository.insert(user);
         } catch (DuplicateKeyException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "User with given login already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User with given username already exists");
         }
 
         return ResponseEntity.noContent().build();
@@ -66,7 +65,7 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody User user) {
         return this.userRepository.findById(id).map(userToUpdate -> {
-            userToUpdate.setLogin(user.getLogin());
+            userToUpdate.setUsername(user.getUsername());
             this.userRepository.save(userToUpdate);
 
             return ResponseEntity.noContent().build();
