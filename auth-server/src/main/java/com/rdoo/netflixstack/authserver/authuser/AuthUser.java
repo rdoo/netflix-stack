@@ -1,7 +1,10 @@
 package com.rdoo.netflixstack.authserver.authuser;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +17,7 @@ public class AuthUser implements UserDetails {
 
     private String username;
     private String password;
+    private Set<String> roles;
 
     public String getUsername() {
         return username;
@@ -29,6 +33,14 @@ public class AuthUser implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 
     public boolean isEnabled() {
@@ -48,6 +60,7 @@ public class AuthUser implements UserDetails {
     }
 
     public List<GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return Optional.ofNullable(this.roles).orElse(Collections.emptySet()).stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
     }
 }

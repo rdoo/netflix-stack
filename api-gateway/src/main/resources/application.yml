@@ -55,6 +55,7 @@ zuul:
       sensitiveHeaders:
       path: /users/**
       serviceId: user-service
+      stripPrefix: false
 
     note-service:
       sensitiveHeaders:

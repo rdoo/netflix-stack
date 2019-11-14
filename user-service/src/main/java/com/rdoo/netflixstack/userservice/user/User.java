@@ -1,5 +1,7 @@
 package com.rdoo.netflixstack.userservice.user;
 
+import java.util.Set;
+
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,10 +30,7 @@ public class User {
     @NotBlank
     private String lastName;
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    private Set<String> roles;
 
     public String getId() {
         return id;
@@ -71,5 +70,13 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 }
