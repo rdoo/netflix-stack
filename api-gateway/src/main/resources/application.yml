@@ -9,8 +9,13 @@ server:
 
 security:
   oauth2:
+    resource:
+      jwt:
+        keyValue: 123
+    # sso:
+    #   loginPath: /login
     client:
-      # accessTokenUri: http://auth-server/auth/oauth/token
+      # accessTokenUri: http://localhost:8894/oauth/token
       clientId: apiGatewayClient
       clientSecret: apiGatewaySecret
 
@@ -22,15 +27,27 @@ eureka:
 zuul:
   prefix: /api/v1
   routes:
-    auth-service:
+    login:
       sensitiveHeaders:
-      path: /auth/**
+      path: /login
       serviceId: auth-server
 
+    refresh-token:
+      sensitiveHeaders:
+      path: /refresh-token
+      serviceId: auth-server
+
+    # auth-service:
+    #   sensitiveHeaders:
+    #   path: /auth/**
+    #   serviceId: auth-server
+
     user-service:
+      sensitiveHeaders:
       path: /users/**
       serviceId: user-service
 
     note-service:
+      sensitiveHeaders:
       path: /notes/**
       serviceId: note-service

@@ -10,6 +10,9 @@ server:
 
 security:
   oauth2:
+    authorization:
+      jwt:
+        keyValue: 123
     client:
       clientId: apiGatewayClient
       clientSecret: apiGatewaySecret
