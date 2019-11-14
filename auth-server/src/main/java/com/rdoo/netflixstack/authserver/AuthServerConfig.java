@@ -21,9 +21,6 @@ import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
-// default configuration: https://github.com/spring-projects/spring-security-oauth2-boot/blob/master/spring-security-oauth2-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/oauth2/authserver/OAuth2AuthorizationServerConfiguration.java
-// docs: https://github.com/spring-projects/spring-security-oauth2-boot/blob/master/docs/src/docs/asciidoc/index.adoc
-
 @Configuration
 @EnableConfigurationProperties(AuthorizationServerProperties.class)
 @Import(AuthorizationServerTokenServicesConfiguration.class)
@@ -63,6 +60,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         ClientDetails client = this.clientDetails();
         clients.inMemory().withClient(client.getClientId()).secret(client.getClientSecret())
                 .authorizedGrantTypes(client.getAuthorizedGrantTypes().toArray(new String[0]))
-                .scopes(client.getScope().toArray(new String[0])); // TODO add ROLE?
+                .scopes(client.getScope().toArray(new String[0]));
     }
 }

@@ -50,12 +50,14 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody User user) {
         return this.userService.update(id, user).map(updatedUser -> ResponseEntity.noContent().build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> delete(@PathVariable String id) {
         return this.userService.delete(id).map(deletedUser -> ResponseEntity.noContent().build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
