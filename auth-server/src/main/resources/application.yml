@@ -12,7 +12,10 @@ security:
   oauth2:
     authorization:
       jwt:
-        keyValue: 123
+        keyStore: classpath:jwt.jks
+        keyStorePassword: mypass
+        keyAlias: jwt
+        keyPassword: mypass
     client:
       clientId: apiGatewayClient
       clientSecret: apiGatewaySecret

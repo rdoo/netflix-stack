@@ -45,7 +45,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableResourceServer
-public class SecurityConfig extends ResourceServerConfigurerAdapter { // WebSecurityConfigurerAdapter
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter { // WebSecurityConfigurerAdapter
     @Autowired
     private PublicPaths publicPaths;
 

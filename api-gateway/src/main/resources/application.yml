@@ -11,11 +11,20 @@ security:
   oauth2:
     resource:
       jwt:
-        keyValue: 123
+        keyValue: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmq8h2/BNI2upz/4cChSO
+          /TDy/929Xo/MnhFIn9YlecLNZ6x26JxhPxYmN6/AdIdlNWoP7hd1YSYgnT+0Sy2i
+          UWEU9KNAbR0k2RMKRd35OgLR/+7LHNrLBZAjYgGaiDiVDCgIH+g5mmYjz51+r2Ma
+          o6zm4Ibp4Vjv++Udb+ua/kOtoAk2ImtqfvtI408gJDQNd2GaDSUSMSvxlCmLidE/
+          IxZt5WSw0ixszGIhgNLhf13vgnsFszfh0AiJpvRi5aiTtJ0wOiCLEVWLK3Ed64Ap
+          KgGHQaer62M+yZjWboxbMypanmUu8x60brULKLXCk4U5TJUVWklJDHcmrpLoywC+
+          3QIDAQAB
+          -----END PUBLIC KEY-----
     # sso:
     #   loginPath: /login
     client:
-      # accessTokenUri: http://localhost:8894/oauth/token
+      # accessTokenUri: http://localhost:8894/oauth/token // TODO przeniesc to do filtra zuulowego?
       clientId: apiGatewayClient
       clientSecret: apiGatewaySecret
 
