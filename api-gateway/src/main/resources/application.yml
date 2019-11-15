@@ -57,7 +57,14 @@ zuul:
       serviceId: user-service
       stripPrefix: false
 
+    image-service:
+      sensitiveHeaders:
+      path: /images/**
+      serviceId: image-service
+      stripPrefix: false
+
     note-service:
       sensitiveHeaders:
       path: /notes/**
       serviceId: note-service
+      stripPrefix: false
