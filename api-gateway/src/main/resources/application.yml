@@ -33,6 +33,9 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8884/eureka/
 
+ribbon:
+  ReadTimeout: 60000
+
 zuul:
   prefix: /api/v1
   routes:
@@ -45,12 +48,7 @@ zuul:
       sensitiveHeaders:
       path: /refresh-token
       serviceId: auth-server
-
-    # auth-service:
-    #   sensitiveHeaders:
-    #   path: /auth/**
-    #   serviceId: auth-server
-
+  
     user-service:
       sensitiveHeaders:
       path: /users/**
