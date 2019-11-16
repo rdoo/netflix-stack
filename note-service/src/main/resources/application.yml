@@ -6,7 +6,7 @@ spring:
       uri: mongodb://localhost:27017/netflix-stack
 
 server:
-  port: 8886
+  port: 8086
 
 eureka:
   client:

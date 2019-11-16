@@ -1,0 +1,66 @@
+version: "3.7"
+
+services:
+  discovery-server:
+    container_name: discovery-server
+    build: ./discovery-server
+    ports:
+      - "8082:8082"
+
+  mongodb-users:
+    container_name: mongodb-users
+    image: mongo:4.2
+    volumes:
+      - mongodb-users-volume:/data/db
+      - mongodb-users-volume:/data/configdb
+
+  user-service:
+    container_name: user-service
+    build: ./user-service
+    depends_on:
+      - discovery-server
+      - mongodb-users
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb-users:27017/netflix-stack
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8082/eureka/
+
+  auth-server:
+    container_name: auth-server
+    build: ./auth-server
+    depends_on:
+      - discovery-server
+      - mongodb-users
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb-users:27017/netflix-stack
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8082/eureka/
+
+  mongodb-files:
+    container_name: mongodb-files
+    image: mongo:4.2
+    volumes:
+      - mongodb-files-volume:/data/db
+      - mongodb-files-volume:/data/configdb
+
+  file-service:
+    container_name: file-service
+    build: ./image-service
+    depends_on:
+      - discovery-server
+      - mongodb-files
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb-files:27017/netflix-stack
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8082/eureka/
+
+  api-gateway:
+    container_name: api-gateway
+    build: ./api-gateway
+    ports:
+      - "8885:8081"
+    depends_on:
+      - discovery-server
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8082/eureka/
+
+volumes:
+  mongodb-users-volume:
+  mongodb-files-volume:

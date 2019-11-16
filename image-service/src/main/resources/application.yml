@@ -9,7 +9,7 @@ spring:
       enabled: false
 
 server:
-  port: 8837
+  port: 8085
 
 security:
   oauth2:

@@ -1,7 +1,5 @@
 package com.rdoo.netflixstack.authserver;
 
-import com.rdoo.netflixstack.authserver.authuser.AuthUserDetailsService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerTokenServicesConfiguration;
@@ -11,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -19,7 +18,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 
 @Configuration
 @EnableConfigurationProperties(AuthorizationServerProperties.class)
@@ -37,10 +36,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    AuthUserDetailsService userDetailsService;
+    UserDetailsService userDetailsService;
 
     @Autowired
-    JwtAccessTokenConverter accessTokenConverter;
+    AccessTokenConverter accessTokenConverter;
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {

@@ -28,7 +28,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping("/images")
+@RequestMapping("/images") // TODO files
 public class FileController {
     @Autowired
     private FileService fileService;

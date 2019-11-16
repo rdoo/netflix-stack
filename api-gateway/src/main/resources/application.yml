@@ -3,7 +3,7 @@ spring:
     name: api-gateway
 
 server:
-  port: 8885
+  port: 8081
 
 # read https://github.com/netstalk3r/globalrep/tree/master/oauth2-password-behind-zuul
 

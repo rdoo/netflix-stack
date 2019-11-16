@@ -6,7 +6,7 @@ spring:
       uri: mongodb://localhost:27017/netflix-stack
 
 server:
-  port: 8894
+  port: 8083
 
 security:
   oauth2:
