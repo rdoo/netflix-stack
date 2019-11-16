@@ -7,9 +7,9 @@
     <version>1</version>
 
     <parent>
-        <groupId>com.rdoo.netflixstack</groupId>
-        <artifactId>netflix-stack</artifactId>
-        <version>1</version>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>Greenwich.SR3</version>
     </parent>
 
     <dependencies>

@@ -1,6 +1,15 @@
-FROM openjdk:13-jdk-alpine
+FROM maven:3.6.2-jdk-13 as build
+
+# WORKDIR /usr/src/app TODO
+COPY ./pom.xml .
+RUN mvn dependency:resolve
+# RUN mvn dependency:go-offline -B TODO
+COPY ./src ./src
+RUN mvn package
+
+FROM openjdk:13-jdk
 
 WORKDIR /usr/src/app
-COPY ./target/*.jar .
+COPY --from=build target/*.jar ./app.jar
 
-CMD ["java", "-jar", "user-service-1.jar"]
+CMD ["java", "-jar", "app.jar"]

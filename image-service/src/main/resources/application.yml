@@ -3,7 +3,7 @@ spring:
     name: image-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/netflix-stack
+      uri: mongodb://localhost:27017/netflix-stack # TODO change to 27018
   servlet:
     multipart:
       enabled: false
@@ -29,4 +29,4 @@ security:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8884/eureka/
+      defaultZone: http://localhost:8082/eureka/
