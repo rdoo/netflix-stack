@@ -1,4 +1,4 @@
-# Netflix Stack Microservices
+# WIP: Netflix Stack Microservices
 Example project showcasing microservice architecture using Netflix stack
 
 ## Requirements

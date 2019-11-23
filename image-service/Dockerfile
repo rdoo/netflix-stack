@@ -1,9 +1,7 @@
 FROM maven:3.6.2-jdk-13 as build
 
-# WORKDIR /usr/src/app TODO
 COPY ./pom.xml .
-RUN mvn dependency:resolve
-# RUN mvn dependency:go-offline -B TODO
+RUN mvn dependency:go-offline -B
 COPY ./src ./src
 RUN mvn package
 
