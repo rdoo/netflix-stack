@@ -1,8 +1,8 @@
 #!/bin/sh
 
-mvn -f ./discovery-server/pom.xml spring-boot:run &
-mvn -f ./auth-server/pom.xml spring-boot:run &
-mvn -f ./api-gateway/pom.xml spring-boot:run &
-mvn -f ./user-service/pom.xml spring-boot:run &
-mvn -f ./image-service/pom.xml spring-boot:run &
-# mvn -f ./note-service/pom.xml spring-boot:run
+mvn spring-boot:run -f ./discovery-server/pom.xml &
+mvn spring-boot:run -f ./api-gateway/pom.xml &
+mvn spring-boot:run -f ./auth-server/pom.xml &
+mvn spring-boot:run -f ./user-service/pom.xml &
+mvn spring-boot:run -f ./image-service/pom.xml &
+# mvn spring-boot:run -f ./note-service/pom.xml
