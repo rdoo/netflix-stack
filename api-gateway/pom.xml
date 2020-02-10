@@ -6,6 +6,10 @@
     <artifactId>api-gateway</artifactId>
     <version>1</version>
 
+    <properties>
+        <java.version>13</java.version>
+    </properties>
+
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
