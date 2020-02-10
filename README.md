@@ -25,14 +25,33 @@ Example microservice that allows storing and retrieving files.
 
 ## Building and running
 ### Without Docker
-TODO: MongoDB setup
+TODO: MongoDB setup port 27017, 27018
 
 Download dependencies, build and run by using `mvn spring-boot:run` in every project.
 ### With Docker
-`docker-compose up`
+Run command `docker-compose up` in main directory.
 
 ## Features
 - TODO
+- mongodb, gridfs?
+- oauth?
+- jwt checked on gateway and services?
+- documentation?
+
+## Endpoints
+TODO change localhost to `<your api gateway path>`
+- Registering a user
+```sh
+curl --data "{\"username\":\"user\",\"password\":\"pass\"}" --header "Content-Type:application/json" http://localhost:8081/api/v1/users/register
+```
+- Logging in / Getting access token
+```sh
+curl --data "username=user&password=pass" http://localhost:8081/api/v1/login
+```
+- Refreshing access token
+```sh
+curl --data "refresh_token=<refresh_token from previous response>" http://localhost:8081/api/v1/refresh-token
+```
 
 TODO:
 - REST documentation

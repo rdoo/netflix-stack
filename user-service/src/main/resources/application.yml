@@ -4,6 +4,8 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/netflix-stack
+  jackson:
+    defaultPropertyInclusion: non_null # do not serialize nulls
 
 server:
   port: 8084

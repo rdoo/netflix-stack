@@ -24,10 +24,10 @@ public class User {
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
 
-    @NotBlank
+    // @NotBlank // TODO not required?
     private String firstName;
 
-    @NotBlank
+    // @NotBlank // TODO not required?
     private String lastName;
 
     private Set<String> roles;

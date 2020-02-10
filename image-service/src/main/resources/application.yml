@@ -6,7 +6,7 @@ spring:
       uri: mongodb://localhost:27017/netflix-stack # TODO change to 27018
   servlet:
     multipart:
-      enabled: false
+      enabled: false # disable multipart to efficiently handle large files # TODO
 
 server:
   port: 8085
