@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -26,6 +30,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
+    @ApiOperation("Register new user")
+    @ApiResponses(value = { @ApiResponse(code = 204, message = "Successfully registered new user") })
     public ResponseEntity<?> register(@Valid @RequestBody User user) {
         try {
             this.userService.register(user);
@@ -38,12 +44,14 @@ public class UserController {
 
     @GetMapping
     @PreAuthorize("hasRole('USER')") // TODO ADMIN
+    @ApiOperation("Get all users")
     public List<User> getAll() {
         return this.userService.getAll();
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation("Get user by id")
     public ResponseEntity<?> getById(@PathVariable String id) {
         return this.userService.getById(id).map(user -> ResponseEntity.ok(user))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -51,6 +59,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation("Update user by id")
     public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody User user) {
         return this.userService.update(id, user).map(updatedUser -> ResponseEntity.noContent().build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -58,6 +67,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation("Delete user by id")
     public ResponseEntity<?> delete(@PathVariable String id) {
         return this.userService.delete(id).map(deletedUser -> ResponseEntity.noContent().build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
