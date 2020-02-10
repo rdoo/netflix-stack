@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>Greenwich.SR3</version>
+        <version>Greenwich.SR5</version>
     </parent>
 
     <dependencies>
