@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/images") // TODO files
 public class FileController {
@@ -34,11 +36,14 @@ public class FileController {
     private FileService fileService;
 
     @GetMapping
+    @ApiOperation("Get all files descriptions")
     public List<FileDTO> getAll(Authentication authentication) {
         return this.fileService.getAll(this.getName());
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Get file content")
+    // TODO @ApiResponses unprocessableEntity
     public ResponseEntity<?> getById(@PathVariable String id) {
         try {
             return this.fileService.getById(id, this.getName()).map(file -> {
@@ -53,6 +58,8 @@ public class FileController {
     }
 
     @PostMapping
+    @ApiOperation("Upload new file")
+    // TODO @ApiResponses UNSUPPORTED_MEDIA_TYPE unprocessableEntity
     public ResponseEntity<?> create(HttpServletRequest request) {
         if (!ServletFileUpload.isMultipartContent(request)) {
             return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).build();
@@ -86,6 +93,7 @@ public class FileController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Delete file")
     public ResponseEntity<?> delete(@PathVariable String id) {
         this.fileService.delete(id, this.getName());
         return ResponseEntity.noContent().build();

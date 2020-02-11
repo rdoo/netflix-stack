@@ -6,14 +6,14 @@
     <artifactId>user-service</artifactId>
     <version>1</version>
 
-    <!-- <properties>
+    <properties>
         <java.version>13</java.version>
-    </properties> -->
+    </properties>
 
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>Greenwich.SR5</version>
+        <version>Hoxton.SR1</version>
     </parent>
 
     <dependencies>
