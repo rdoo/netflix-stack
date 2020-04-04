@@ -19,9 +19,9 @@ Single entry point that routes all requests to underlying microservices. Also ac
 ### Authorization server
 Handles user authorization. Implements OAuth2 password grant with access token in JWT format.
 ### User service
-Microservice responsible for registering new users.
+Microservice responsible for registering new users. Uses MongoDB for data persistence.
 ### File service
-Example microservice that allows storing and retrieving files.
+Example microservice that allows storing and retrieving files. Files are kept in MongoDB GridFS collections allowing storing files larger than 16 MB. Uploading and downloading is streamed thanks to Apache Commons FileUpload library resulting in low memory profile.
 
 ## Building and running
 ### Without Docker
@@ -33,7 +33,6 @@ Run command `docker-compose up` in main directory.
 
 ## Features
 - TODO
-- mongodb, gridfs?
 - oauth?
 - jwt checked on gateway and services?
 - documentation?
