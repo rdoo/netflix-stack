@@ -41,7 +41,7 @@ Run command `docker-compose up` in main directory.
 TODO change localhost to `<your api gateway path>`
 - Registering a user
 ```sh
-curl --data "{\"username\":\"user\",\"password\":\"pass\"}" --header "Content-Type:application/json" http://localhost:8081/api/v1/users/register
+curl --data "{\"username\":\"user\",\"password\":\"pass\",\"firstName\":\"First\",\"lastName\":\"Last\"}" --header "Content-Type:application/json" http://localhost:8081/api/v1/users/register
 ```
 - Logging in / Getting access token
 ```sh
