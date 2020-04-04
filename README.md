@@ -45,11 +45,11 @@ curl --data "{\"username\":\"user\",\"password\":\"pass\"}" --header "Content-Ty
 ```
 - Logging in / Getting access token
 ```sh
-curl --data "username=user&password=pass" http://localhost:8081/api/v1/login
+curl --data "{\"username\":\"user\",\"password\":\"pass\"}" --header "Content-Type:application/json" http://localhost:8081/api/v1/login
 ```
 - Refreshing access token
 ```sh
-curl --data "refresh_token=<refresh_token from previous response>" http://localhost:8081/api/v1/refresh-token
+curl --data "{\"refresh_token\":\"<refresh_token from login response>\"}" --header "Content-Type:application/json" http://localhost:8081/api/v1/refresh-token
 ```
 
 TODO:
