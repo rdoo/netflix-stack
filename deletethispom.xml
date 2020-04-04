@@ -12,7 +12,6 @@
         <module>api-gateway</module>
         <module>auth-server</module>
         <module>user-service</module>
-        <module>image-service</module>
-        <module>note-service</module>
+        <module>file-service</module>
     </modules>
 </project>

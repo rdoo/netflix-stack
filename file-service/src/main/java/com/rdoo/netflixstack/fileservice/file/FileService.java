@@ -1,4 +1,4 @@
-package com.rdoo.netflixstack.imageservice.image;
+package com.rdoo.netflixstack.fileservice.file;
 
 import java.io.IOException;
 import java.io.InputStream;

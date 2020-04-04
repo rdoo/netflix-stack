@@ -1,4 +1,4 @@
-package com.rdoo.netflixstack.imageservice;
+package com.rdoo.netflixstack.fileservice;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ public class DocumentationConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.rdoo.netflixstack.imageservice"))
+                .apis(RequestHandlerSelectors.basePackage("com.rdoo.netflixstack.fileservice"))
                 .paths(PathSelectors.any()).build().apiInfo(apiInfo());
     }
 

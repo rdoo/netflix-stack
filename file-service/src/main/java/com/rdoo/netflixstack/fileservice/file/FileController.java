@@ -1,4 +1,4 @@
-package com.rdoo.netflixstack.imageservice.image;
+package com.rdoo.netflixstack.fileservice.file;
 
 import java.io.IOException;
 import java.net.URI;
@@ -30,7 +30,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/images") // TODO files
+@RequestMapping("/files")
 public class FileController {
     @Autowired
     private FileService fileService;

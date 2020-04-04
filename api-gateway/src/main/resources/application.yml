@@ -55,10 +55,10 @@ zuul:
       serviceId: user-service
       stripPrefix: false
 
-    image-service:
+    file-service:
       sensitiveHeaders:
-      path: /images/**
-      serviceId: image-service
+      path: /files/**
+      serviceId: file-service
       stripPrefix: false
 
     note-service:

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: image-service
+    name: file-service
   data:
     mongodb:
       uri: mongodb://localhost:27017/netflix-stack # TODO change to 27018

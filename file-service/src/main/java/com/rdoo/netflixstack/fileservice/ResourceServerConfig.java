@@ -1,4 +1,4 @@
-package com.rdoo.netflixstack.imageservice;
+package com.rdoo.netflixstack.fileservice;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

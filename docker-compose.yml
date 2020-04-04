@@ -43,7 +43,7 @@ services:
 
   file-service:
     container_name: file-service
-    build: ./image-service
+    build: ./file-service
     depends_on:
       - discovery-server
       - mongodb-files

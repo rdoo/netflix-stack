@@ -1,4 +1,4 @@
-package com.rdoo.netflixstack.imageservice;
+package com.rdoo.netflixstack.fileservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,8 +8,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @SpringBootApplication
 @EnableEurekaClient
 // @EnableResourceServer // TODO
-public class ImageServiceApp {
+public class FileServiceApp {
     public static void main(String[] args) {
-        SpringApplication.run(ImageServiceApp.class, args);
+        SpringApplication.run(FileServiceApp.class, args);
     }
 }
