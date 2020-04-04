@@ -46,7 +46,6 @@ public class AuthFilter extends ZuulFilter {
 
         // create query parameters for OAuth server
         Map<String, List<String>> parameterMap = new HashMap<>();
-        parameterMap.put("grant_type", List.of((request.getRequestURI().equals(this.publicPaths.getRefreshTokenPath()) ? "refresh_token" : "password")));
 
         try {
             // read request body
@@ -65,6 +64,7 @@ public class AuthFilter extends ZuulFilter {
             // do nothing
         }
 
+        parameterMap.put("grant_type", List.of((request.getRequestURI().equals(this.publicPaths.getRefreshTokenPath()) ? "refresh_token" : "password")));
         ctx.setRequestQueryParams(parameterMap);
 
         // add basic authentication header

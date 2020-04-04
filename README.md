@@ -24,11 +24,22 @@ Microservice responsible for registering new users. Uses MongoDB for data persis
 Example microservice that allows storing and retrieving files. Files are kept in MongoDB GridFS collections allowing storing files larger than 16 MB. Uploading and downloading is streamed thanks to Apache Commons FileUpload library resulting in low memory profile.
 
 ## Building and running
-### Without Docker
+Before running, it is important to create your own JWT keys for security reasons.
+To create keystore use command:
+```sh
+keytool -genkeypair -keyalg RSA -keystore jwt.jks -alias jwt -storepass mypass -keypass mypass
+```
+and provide your own storepass and keypass and then copy `jwt.jks` file to auth-server resources directory and change storepass and keypass in auth-server `application.yml`.
+Then export a public key using command:
+```sh
+keytool -list -rfc -keystore jwt.jks -alias jwt | openssl x509 -pubkey -noout > jwt-public-key.pem
+```
+and copy `jwt-public-key.pem` file content into api-gateway, user-service and file-service `application.yml` files.
+### Running without Docker
 TODO: MongoDB setup port 27017, 27018
 
-Download dependencies, build and run by using `mvn spring-boot:run` in every project.
-### With Docker
+Run command `mvn spring-boot:run` in every project directory.
+### Running with Docker
 Run command `docker-compose up` in main directory.
 
 ## Features
@@ -51,9 +62,25 @@ curl --data "{\"username\":\"user\",\"password\":\"pass\"}" --header "Content-Ty
 ```sh
 curl --data "{\"refresh_token\":\"<refresh_token from login response>\"}" --header "Content-Type:application/json" http://localhost:8081/api/v1/refresh-token
 ```
+- Uploading a file
+```sh
+curl --form file=@<path to your file> --header "Authorization:Bearer <your access_token>" http://localhost:8081/zuul/api/v1/files
+```
+- Listing files
+```sh
+curl --header "Authorization:Bearer <your access_token>" http://localhost:8081/api/v1/files
+```
+- Downloading a file
+TODO: zuul needed?
+```sh
+curl --header "Authorization:Bearer <your access_token>" http://localhost:8081/api/v1/files/<file id> --output <file name>
+```
+- Deleting a file
+```sh
+curl -X DELETE --header "Authorization:Bearer <your access_token>" http://localhost:8081/api/v1/files/<file id>
+```
 
 TODO:
 - REST documentation
-- JWT keys
 - project cleanup
-- cloud config?
+- cloud config? prob not
