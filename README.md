@@ -84,7 +84,4 @@ curl -X DELETE --header "Authorization:Bearer <your access_token>" http://localh
 ```
 
 TODO:
-- check poms
-- check todos
-- project cleanup
-- cloud config? prob not
+- poms, docker, ports, todos

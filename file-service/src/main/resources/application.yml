@@ -9,7 +9,7 @@ spring:
       uri: mongodb://localhost:27017/netflix-stack # TODO change to 27018
   servlet:
     multipart:
-      enabled: false # disable multipart to efficiently handle large files # TODO
+      resolveLazily: true # resolve multipart requests lazily to handle large files efficiently
 
 security:
   oauth2:

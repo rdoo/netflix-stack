@@ -28,9 +28,6 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8082/eureka/
 
-ribbon:
-  ReadTimeout: 60000
-
 zuul:
   prefix: /api/v1
   routes:
@@ -55,3 +52,7 @@ zuul:
       path: /files/**
       serviceId: file-service
       stripPrefix: false
+
+file-service:
+  ribbon:
+    ReadTimeout: 60000 # increase read timeout for file upload
