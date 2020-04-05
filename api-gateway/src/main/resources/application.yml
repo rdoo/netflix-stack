@@ -13,13 +13,13 @@ security:
       jwt:
         keyValue: |
           -----BEGIN PUBLIC KEY-----
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmq8h2/BNI2upz/4cChSO
-          /TDy/929Xo/MnhFIn9YlecLNZ6x26JxhPxYmN6/AdIdlNWoP7hd1YSYgnT+0Sy2i
-          UWEU9KNAbR0k2RMKRd35OgLR/+7LHNrLBZAjYgGaiDiVDCgIH+g5mmYjz51+r2Ma
-          o6zm4Ibp4Vjv++Udb+ua/kOtoAk2ImtqfvtI408gJDQNd2GaDSUSMSvxlCmLidE/
-          IxZt5WSw0ixszGIhgNLhf13vgnsFszfh0AiJpvRi5aiTtJ0wOiCLEVWLK3Ed64Ap
-          KgGHQaer62M+yZjWboxbMypanmUu8x60brULKLXCk4U5TJUVWklJDHcmrpLoywC+
-          3QIDAQAB
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp73kr0NNQ1pzW0Sunx/b
+          kmRvJZpzhjIqwbNQoqVo601U949Gv4SoGtJ4YFceH9ttqrFH/TCjQDF+fI0+h7w0
+          90JY+iO0+V37PoL3M/3/YimGRFV8rrJrji4ViTmHxH7qxO5J5tIr7SiA1+wDdNB5
+          R/2b9WGHOFNRfaEAb5CWlJT3B6yFHs16UuIV4J/AM0me9C9z5KvSuVbrY+D4l4fB
+          tHl/VMcjo3TCu517b04/kSKbpe6xQMp/9gGBhZtalhVDl2xGw2p2mILRmrsKABaz
+          a+tFCcdHu7ak7irJyAga59cqMwYJkxkdXJSmG3ddajQqz8bQ9hxyMeeMxivKA/sw
+          LQIDAQAB
           -----END PUBLIC KEY-----
     # sso:
     #   loginPath: /login
