@@ -1,11 +1,9 @@
-spring:
-  application:
-    name: api-gateway
-
 server:
   port: 8081
 
-# read https://github.com/netstalk3r/globalrep/tree/master/oauth2-password-behind-zuul
+spring:
+  application:
+    name: api-gateway
 
 security:
   oauth2:
@@ -21,10 +19,7 @@ security:
           a+tFCcdHu7ak7irJyAga59cqMwYJkxkdXJSmG3ddajQqz8bQ9hxyMeeMxivKA/sw
           LQIDAQAB
           -----END PUBLIC KEY-----
-    # sso:
-    #   loginPath: /login
     client:
-      # accessTokenUri: http://localhost:8894/oauth/token // TODO przeniesc to do filtra zuulowego?
       clientId: apiGatewayClient
       clientSecret: apiGatewaySecret
 
@@ -48,7 +43,7 @@ zuul:
       sensitiveHeaders:
       path: /refresh-token
       serviceId: auth-server
-  
+
     user-service:
       sensitiveHeaders:
       path: /users/**
@@ -59,10 +54,4 @@ zuul:
       sensitiveHeaders:
       path: /files/**
       serviceId: file-service
-      stripPrefix: false
-
-    note-service:
-      sensitiveHeaders:
-      path: /notes/**
-      serviceId: note-service
       stripPrefix: false

@@ -110,12 +110,6 @@ public class FileController {
 
     private String getAuthenticatedUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        // TODO
-        if (authentication == null) {
-            return "user";
-        }
-
         return authentication.getName();
     }
 }

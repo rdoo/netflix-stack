@@ -1,12 +1,12 @@
+server:
+  port: 8083
+
 spring:
   application:
     name: auth-server
   data:
     mongodb:
       uri: mongodb://localhost:27017/netflix-stack
-
-server:
-  port: 8083
 
 security:
   oauth2:
@@ -29,19 +29,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8082/eureka/
-
-logging:
- level:
-   org.zalando.logbook: TRACE
-
-logbook:
-  format:
-    style: http
-  obfuscate:
-    headers:
-      - qweertrtsdfs
-    parameters:
-      - sdfsfdhfdh
-      - gfdgsdgfdg
-    paths:
-      - sgdfhdhgfhfg

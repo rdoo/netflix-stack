@@ -1,3 +1,6 @@
+server:
+  port: 8084
+
 spring:
   application:
     name: user-service
@@ -6,9 +9,6 @@ spring:
       uri: mongodb://localhost:27017/netflix-stack
   jackson:
     defaultPropertyInclusion: non_null # do not serialize nulls
-
-server:
-  port: 8084
 
 security:
   oauth2:

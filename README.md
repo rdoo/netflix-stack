@@ -84,7 +84,7 @@ curl -X DELETE --header "Authorization:Bearer <your access_token>" http://localh
 ```
 
 TODO:
-- REST documentation
-- enabling public docs https://stackoverflow.com/questions/37671125/how-to-configure-spring-security-to-allow-swagger-url-to-be-accessed-without-aut
+- check poms
+- check todos
 - project cleanup
 - cloud config? prob not

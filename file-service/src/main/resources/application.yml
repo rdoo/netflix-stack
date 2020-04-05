@@ -1,3 +1,6 @@
+server:
+  port: 8085
+
 spring:
   application:
     name: file-service
@@ -7,9 +10,6 @@ spring:
   servlet:
     multipart:
       enabled: false # disable multipart to efficiently handle large files # TODO
-
-server:
-  port: 8085
 
 security:
   oauth2:
