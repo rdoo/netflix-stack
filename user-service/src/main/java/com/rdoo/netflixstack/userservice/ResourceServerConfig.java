@@ -13,6 +13,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+    private static final String[] AUTH_WHITELIST = {
+        "/users/register",
+        // swagger
+        "/swagger-ui.html",
+        "/swagger-resources/**",
+        "/webjars/springfox-swagger-ui/**",
+        "/v2/api-docs"
+    };
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -20,7 +29,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        // http.authorizeRequests().antMatchers("/users/register").permitAll().anyRequest().authenticated(); // TODO enable
-        http.authorizeRequests().antMatchers("/**").permitAll();
+        http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll().anyRequest().authenticated();
     }
 }
