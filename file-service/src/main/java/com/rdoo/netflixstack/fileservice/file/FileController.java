@@ -23,11 +23,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 
 @RestController
 @RequestMapping("/files")
@@ -37,16 +40,17 @@ public class FileController {
 
     @GetMapping
     @ApiOperation("Get all files descriptions")
-    public List<FileDTO> getAll(Authentication authentication) {
-        return this.fileService.getAll(this.getName());
+    public List<FileDTO> getAll() {
+        return this.fileService.getAll(this.getAuthenticatedUserName());
     }
 
     @GetMapping("/{id}")
     @ApiOperation("Get file content")
-    // TODO @ApiResponses unprocessableEntity
+    @ApiResponses(value = { @ApiResponse(code = 404, message = "File not found"),
+            @ApiResponse(code = 422, message = "File cannot be processed") })
     public ResponseEntity<?> getById(@PathVariable String id) {
         try {
-            return this.fileService.getById(id, this.getName()).map(file -> {
+            return this.fileService.getById(id, this.getAuthenticatedUserName()).map(file -> {
                 return ResponseEntity.ok().contentLength(file.getSize())
                         .header(HttpHeaders.CONTENT_DISPOSITION,
                                 "attachment; filename=" + file.getFilename().replace(" ", "_"))
@@ -58,8 +62,11 @@ public class FileController {
     }
 
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     @ApiOperation("Upload new file")
-    // TODO @ApiResponses UNSUPPORTED_MEDIA_TYPE unprocessableEntity
+    @ApiResponses(value = { @ApiResponse(code = 201, message = "File successfully created"),
+            @ApiResponse(code = 415, message = "Content must be multipart/form-data"),
+            @ApiResponse(code = 422, message = "File cannot be processed") })
     public ResponseEntity<?> create(HttpServletRequest request) {
         if (!ServletFileUpload.isMultipartContent(request)) {
             return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).build();
@@ -72,7 +79,7 @@ public class FileController {
             while (itemIterator.hasNext()) {
                 FileItemStream item = itemIterator.next();
                 if (!item.isFormField()) {
-                    createdFileId = this.fileService.create(item.openStream(), item.getName(), this.getName());
+                    createdFileId = this.fileService.create(item.openStream(), item.getName(), this.getAuthenticatedUserName());
                     break;
                 }
             }
@@ -93,23 +100,22 @@ public class FileController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @ApiOperation("Delete file")
+    @ApiResponses(value = { @ApiResponse(code = 204, message = "File succesfully deleted") })
     public ResponseEntity<?> delete(@PathVariable String id) {
-        this.fileService.delete(id, this.getName());
+        this.fileService.delete(id, this.getAuthenticatedUserName());
         return ResponseEntity.noContent().build();
     }
 
-    public String getName() {
+    private String getAuthenticatedUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        // TODO
         if (authentication == null) {
             return "user";
         }
 
-        // return authentication.getName(); // TODO
-
-        System.out.println(authentication.getName());
-
-        return "user";
+        return authentication.getName();
     }
 }

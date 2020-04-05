@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,8 +31,10 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT) // needed for swagger documentation
     @ApiOperation("Register new user")
-    @ApiResponses(value = { @ApiResponse(code = 204, message = "Successfully registered new user") })
+    @ApiResponses(value = { @ApiResponse(code = 204, message = "User successfully registered"),
+            @ApiResponse(code = 409, message = "User with given username already exists") })
     public ResponseEntity<?> register(@Valid @RequestBody User user) {
         try {
             this.userService.register(user);
@@ -52,22 +55,29 @@ public class UserController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation("Get user by id")
+    @ApiResponses(value = { @ApiResponse(code = 404, message = "User not found") })
     public ResponseEntity<?> getById(@PathVariable String id) {
         return this.userService.getById(id).map(user -> ResponseEntity.ok(user))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation("Update user by id")
+    @ApiResponses(value = { @ApiResponse(code = 204, message = "User succesfully updated"),
+            @ApiResponse(code = 404, message = "User not found") })
     public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody User user) {
         return this.userService.update(id, user).map(updatedUser -> ResponseEntity.noContent().build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation("Delete user by id")
+    @ApiResponses(value = { @ApiResponse(code = 204, message = "User succesfully deleted"),
+            @ApiResponse(code = 404, message = "User not found") })
     public ResponseEntity<?> delete(@PathVariable String id) {
         return this.userService.delete(id).map(deletedUser -> ResponseEntity.noContent().build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

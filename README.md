@@ -24,8 +24,8 @@ Microservice responsible for registering new users. Uses MongoDB for data persis
 Example microservice that allows storing and retrieving files. Files are kept in MongoDB GridFS collections allowing storing files larger than 16 MB. Uploading and downloading is streamed thanks to Apache Commons FileUpload library resulting in low memory profile.
 
 ## Building and running
-Before running, it is important to create your own JWT keys for security reasons.
-To create keystore use command:
+Before running, it is important to create your own JWT encryption keys for security reasons.
+To create a keystore use command:
 ```sh
 keytool -genkeypair -keyalg RSA -keystore jwt.jks -alias jwt -storepass mypass -keypass mypass
 ```
@@ -49,6 +49,10 @@ Run command `docker-compose up` in main directory.
 - documentation?
 
 ## Endpoints
+Eureka address: http://localhost:8082
+User service docs: http://localhost:8084/swagger-ui.html
+File service docs: http://localhost:8085/swagger-ui.html
+
 TODO change localhost to `<your api gateway path>`
 - Registering a user
 ```sh
@@ -71,7 +75,6 @@ curl --form file=@<path to your file> --header "Authorization:Bearer <your acces
 curl --header "Authorization:Bearer <your access_token>" http://localhost:8081/api/v1/files
 ```
 - Downloading a file
-TODO: zuul needed?
 ```sh
 curl --header "Authorization:Bearer <your access_token>" http://localhost:8081/api/v1/files/<file id> --output <file name>
 ```
@@ -82,5 +85,6 @@ curl -X DELETE --header "Authorization:Bearer <your access_token>" http://localh
 
 TODO:
 - REST documentation
+- enabling public docs https://stackoverflow.com/questions/37671125/how-to-configure-spring-security-to-allow-swagger-url-to-be-accessed-without-aut
 - project cleanup
 - cloud config? prob not
